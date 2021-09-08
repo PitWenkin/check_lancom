@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##
-# 2021-09-02:  Version 1.0	\\ Pit Wenkin
+# 2021-09-02:  Version 1.1	\\ Pit Wenkin
 ##
 
 hostname=""
@@ -62,9 +62,9 @@ if [ "$hostname" = "" ] || [ "$SNMPCommunity" = "" ] ; then
 else
 
 	SNMPArgs=" -OQne -v $SNMPVersion -c $SNMPCommunity -t $SNMPTimeout $hostname:$SNMPPort"
-	
+
 	info=`snmpget $SNMPArgs $OID_ALLAPS $OID_APSUP 2> /dev/null`
-	
+
 	if [ "$?" != "0" ] ; then
 		output="CRITICAL - Problem with SNMP request, check user/password/host"
 		intReturn=$STATE_CRITICAL;
@@ -73,7 +73,7 @@ else
 		APSUP=$(echo "$info" | grep $OID_APSUP | sed 's/.* = //g' | sed 's/"//g')
 		APSDOWN=`expr $ALLAPS - $APSUP`
 		if [ "$APSDOWN" -gt "0" ] ; then
-			hundred=`expr 100 '*' "$APSUP"`
+			hundred=`expr 100 '*' "$APSDOWN"`
 			percent=`expr $hundred / $ALLAPS`
 			percent=${percent%.*}
 			if [ "$percent" -gt "$critical" ] ; then
