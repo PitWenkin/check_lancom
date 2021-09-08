@@ -32,11 +32,12 @@ intReturn=$STATE_OK
 
 usage()
 {
-        echo "usage: ./check_lancom -h [hostname] -c [community] -p [port] -W [warning] -C [critical]"
+        echo "usage: ./check_lancom -h [hostname] -c [community] -p [port] -t [timeout] -W [warning] -C [critical]"
         echo "options:"
         echo "            -h [hostname]"
-        echo "            -c [SNMPv2 community name]	(ex: public)"
+        echo "            -c [SNMPv2 community name]	(default is public)"
         echo "            -p [port]			(default is 161)"
+        echo "            -t [timeout]			(default is 10 seconds)"
         echo "            -W [warning]  Percentage of accesspoints which have to be down to return a warning message (default is 1)"
         echo "            -C [critical] Percentage of accesspoints which have to be down to return a critical message (default is 10)"
         echo ""
