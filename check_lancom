@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##
-# 2021-09-02:  Version 1.1	\\ Pit Wenkin
+# 2023-01-10:  Version 1.2	\\ Pit Wenkin
 ##
 
 hostname=""
@@ -77,7 +77,7 @@ else
 			percent=`expr $hundred / $ALLAPS`
 			percent=${percent%.*}
 			if [ "$percent" -gt "$critical" ] ; then
-				output="CRITCAL - $APSDOWN accesspoints are down / $APSUP accesspoints are up"
+				output="CRITICAL - $APSDOWN accesspoints are down / $APSUP accesspoints are up"
 				intReturn=$STATE_CRITICAL;
 			else
 				if [ "$percent" -gt "$warning" ] ; then
